@@ -23,7 +23,7 @@ class ExchangeRateController extends Controller
 
         $response = $exchangeRate->compareRates($company1Response,$company2Response);
 
-        return CustomResponseBuilder::jsonResult("Compared result",null,$response);
+        return $exchangeRate->getComparedJson($response);
 
     }
 
