@@ -21,7 +21,7 @@ use Illuminate\Http\Request;
 
 Route::prefix('v1')->group(function () {
 
-    Route::get("compare/result","ExchangeRate\ExchangeRateController@getComparedResponse");
+    Route::get("company/compare/result","ExchangeRate\ExchangeRateController@getComparedJsonResponse");
 
 });
 
