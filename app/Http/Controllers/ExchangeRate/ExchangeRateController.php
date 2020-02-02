@@ -21,24 +21,7 @@ class ExchangeRateController extends Controller
         $company1Response = $exchangeRate->getCompanyExchangeRates(new Company1(),"http://www.mocky.io/v2/5a74519d2d0000430bfe0fa0");
         $company2Response = $exchangeRate->getCompanyExchangeRates(new Company2(),"http://www.mocky.io/v2/5a74524e2d0000430bfe0fa3");
 
-        $comparedList = [];
-
-        for ($i = 0; $i < count($company1Response); $i++){
-
-            if($company1Response[$i]->amount < $company2Response[$i]->oran){
-
-                $comparedList[$i] = ["shortCode" => $company1Response[$i]->symbol, "rate" => $company1Response[$i]->amount];
-
-            }
-            else{
-
-                $comparedList[$i] = ["shortCode" => $company2Response[$i]->kod, "rate" => (double)$company2Response[$i]->oran];
-
-            }
-
-        }
-
-        $response = $comparedList;
+        $response = $exchangeRate->compareRates($company1Response,$company2Response);
 
         return CustomResponseBuilder::jsonResult("Compared result",null,$response);
 
@@ -51,24 +34,7 @@ class ExchangeRateController extends Controller
         $company1Response = $exchangeRate->getCompanyExchangeRates(new Company1(),"http://www.mocky.io/v2/5a74519d2d0000430bfe0fa0");
         $company2Response = $exchangeRate->getCompanyExchangeRates(new Company2(),"http://www.mocky.io/v2/5a74524e2d0000430bfe0fa3");
 
-        $comparedList = [];
-
-        for ($i = 0; $i < count($company1Response); $i++){
-
-            if($company1Response[$i]->amount < $company2Response[$i]->oran){
-
-                $comparedList[$i] = ["shortCode" => $company1Response[$i]->symbol, "rate" => $company1Response[$i]->amount];
-
-            }
-            else{
-
-                $comparedList[$i] = ["shortCode" => $company2Response[$i]->kod, "rate" => (double)$company2Response[$i]->oran];
-
-            }
-
-        }
-
-        $response = $comparedList;
+        $response = $exchangeRate->compareRates($company1Response,$company2Response);
 
         return CustomResponseBuilder::consoleResult($response);
 

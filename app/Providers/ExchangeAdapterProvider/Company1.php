@@ -40,7 +40,26 @@ class Company1 implements IExchangeRate
 
         $providerResponse = json_decode($providerResponse);
 
-        return $providerResponse->result;
+        $providerResponse = $this->convertToStandartResult($providerResponse->result);
+
+        return $providerResponse;
+
+    }
+
+    public function convertToStandartResult($data)
+    {
+        // TODO: Implement convertToStandartResult() method.
+
+        $standartResult = [];
+
+        for ($i = 0; $i < count($data); $i++)
+        {
+
+            $standartResult[$i] = array("shortCode" => $data[$i]->symbol, "rate" => $data[$i]->amount);
+
+        }
+
+        return $standartResult;
 
     }
 

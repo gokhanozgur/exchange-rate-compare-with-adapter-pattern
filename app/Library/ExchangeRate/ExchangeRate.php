@@ -5,8 +5,6 @@ namespace App\Library\ExchangeRate;
 
 
 use App\Http\Helpers\CustomResponseBuilder\CustomResponseBuilder;
-use App\Providers\ExchangeAdapterProvider\Company1;
-use App\Providers\ExchangeAdapterProvider\Company2;
 
 class ExchangeRate
 {
@@ -15,7 +13,30 @@ class ExchangeRate
 
         $IExchangeRate->setApiUrl($apiUrl);
         $providerResponse = $IExchangeRate->getProviderResponse();
-        return $response = $IExchangeRate->giveDataResult($providerResponse);
+        return $IExchangeRate->giveDataResult($providerResponse);
+
+    }
+
+    public function compareRates(array $array,array $otherArray){
+
+        $comparedList = [];
+
+        for ($i = 0; $i < count($array); $i++){
+
+            if($array[$i]["rate"] < $otherArray[$i]["rate"]){
+
+                $comparedList[$i] = array("shortCode" => $array[$i]["shortCode"], "rate" => $array[$i]["rate"]);
+
+            }
+            else{
+
+                $comparedList[$i] = array("shortCode" => $otherArray[$i]["shortCode"], "rate" => $otherArray[$i]["rate"]);
+
+            }
+
+        }
+
+        return $comparedList;
 
     }
 

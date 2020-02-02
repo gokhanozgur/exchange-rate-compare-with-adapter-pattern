@@ -13,4 +13,6 @@ interface IExchangeRate
 
     public function giveDataResult($data);
 
+    public function convertToStandartResult($data);
+
 }
