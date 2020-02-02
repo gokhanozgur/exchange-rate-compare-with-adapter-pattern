@@ -43,7 +43,7 @@ class CustomResponseBuilder implements ICustomResponseBuilder
 
          foreach ($data as $datum){
 
-             $stringResult .= $datum["shortCode"]." : ".$datum["rate"]."<br>";
+             $stringResult .= $datum["shortCode"]." : ".$datum["rate"]."\n";
 
          }
 
