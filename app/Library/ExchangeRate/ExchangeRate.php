@@ -40,6 +40,20 @@ class ExchangeRate
 
     }
 
+    public function compareRateFromMultipleArray(array $multipleArray){
+
+        $minExchangeRateData[] = $multipleArray[0];
+
+        for ($i = 1; $i < count($multipleArray);$i++){
+
+            $minExchangeRateData[0] = $this->compareRates($minExchangeRateData[0],$multipleArray[$i]);
+
+        }
+
+        return $minExchangeRateData[0];
+
+    }
+
     public function getComparedJson($data){
 
         return CustomResponseBuilder::jsonResult("Compared result",null,$data);
