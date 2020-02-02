@@ -21,13 +21,13 @@ class ExchangeRateController extends Controller
         $company1Response = $exchangeRate->getCompanyExchangeRates(new Company1(),"http://www.mocky.io/v2/5a74519d2d0000430bfe0fa0");
         $company2Response = $exchangeRate->getCompanyExchangeRates(new Company2(),"http://www.mocky.io/v2/5a74524e2d0000430bfe0fa3");
 
-        $fakeResult = [
+        /*$fakeResult = [
             ["shortCode" => "DOLAR","rate" => 3.12345],
             ["shortCode" => "AVRO","rate" => 8.12345],
             ["shortCode" => "İNGİLİZ STERLİNİ","rate" => 1.12345],
-        ];
+        ];*/
 
-        $responseArray = [$company1Response,$company2Response,$fakeResult];
+        $responseArray = [$company1Response,$company2Response];
 
         $response = $exchangeRate->compareRateFromMultipleArray($responseArray);
 
@@ -42,7 +42,9 @@ class ExchangeRateController extends Controller
         $company1Response = $exchangeRate->getCompanyExchangeRates(new Company1(),"http://www.mocky.io/v2/5a74519d2d0000430bfe0fa0");
         $company2Response = $exchangeRate->getCompanyExchangeRates(new Company2(),"http://www.mocky.io/v2/5a74524e2d0000430bfe0fa3");
 
-        $response = $exchangeRate->compareRates($company1Response,$company2Response);
+        $responseArray = [$company1Response,$company2Response];
+
+        $response = $exchangeRate->compareRateFromMultipleArray($responseArray);
 
         return $exchangeRate->getComparedConsoleResult($response);
 
@@ -55,7 +57,9 @@ class ExchangeRateController extends Controller
         $company1Response = $exchangeRate->getCompanyExchangeRates(new Company1(),"http://www.mocky.io/v2/5a74519d2d0000430bfe0fa0");
         $company2Response = $exchangeRate->getCompanyExchangeRates(new Company2(),"http://www.mocky.io/v2/5a74524e2d0000430bfe0fa3");
 
-        $response = $exchangeRate->compareRates($company1Response,$company2Response);
+        $responseArray = [$company1Response,$company2Response];
+
+        $response = $exchangeRate->compareRateFromMultipleArray($responseArray);
 
         return view("exchange-list",compact("response"));
 
