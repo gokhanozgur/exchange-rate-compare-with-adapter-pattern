@@ -36,7 +36,7 @@ class ExchangeRateController extends Controller
 
         $response = $exchangeRate->compareRates($company1Response,$company2Response);
 
-        return CustomResponseBuilder::consoleResult($response);
+        return $exchangeRate->getComparedConsoleResult($response);
 
     }
 
